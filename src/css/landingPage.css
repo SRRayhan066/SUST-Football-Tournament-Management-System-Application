@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    height: 100vh;
+    padding: 10vh 10vw;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(255, 238, 238);
+}
+
+.left-container{
+    width: 65vw;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left-containers{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.left-container h1{
+    margin: 5vh 10px;
+    font-size: 40px;
+    font-style: bold;
+}
+
+.left-container p{
+    margin: 10vh 1vw;
+    font-size: 17px;
+}
+
+.button-container{
+    margin: 10vh 1vw;
+}
+
+.login-button{
+    background-color: rgb(242, 94, 94);
+}
+
+
+.right-container{
+    background-color: white;
+    width: 25vw;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.right-container img{
+    height: 100%;
+    width: auto;
+    margin-left: -30%;
+}
