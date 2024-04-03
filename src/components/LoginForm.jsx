@@ -6,11 +6,13 @@ const LoginForm = () => {
     return (
         <div>
             <div className="login-form-container">
-                <Form labelCol={{span:5}} wrapperCol={{span:16}}>
-                    <Form.Item label='E-mail' name='email' rules={[{required:true,message:'Enter your e-mail'}]}>
+                <Form autoComplete='off' labelCol={{span:5}} wrapperCol={{span:16}}>
+                    <Form.Item label='E-mail' name='email' rules={[
+                        {required:true,message:'Enter your e-mail'},
+                        {type:'email',message:'Please enter a valid e-mail'}]} hasFeedback>
                         <Input placeholder='E-mail'></Input>
                     </Form.Item>
-                    <Form.Item label='Password' name='password' rules={[{required:true,message:'Enter your password'}]}>
+                    <Form.Item label='Password' name='password' rules={[{required:true,message:'Enter a password'},{min:6}]} hasFeedback>
                         <Input type='password' placeholder='Password'></Input>
                     </Form.Item>
                     <Form.Item wrapperCol={{offset:5,span:16}}>
