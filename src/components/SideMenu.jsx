@@ -4,6 +4,18 @@ import '../css/contentPage.css';
 import { Menu } from 'antd'
 import { Link } from 'react-router-dom';
 
+import { RiFootballLine, RiTeamFill } from "react-icons/ri";
+import { TbSoccerField, TbUsersPlus } from "react-icons/tb";
+import { GiWhistle } from "react-icons/gi";
+import { LuGlasses, LuUserPlus2 } from "react-icons/lu";
+import { MdLeaderboard, MdPendingActions } from "react-icons/md";
+import { BiSolidCircleQuarter } from "react-icons/bi";
+import { WiMoonFirstQuarter } from "react-icons/wi";
+import { FaCircle, FaUserPlus } from "react-icons/fa";
+import { IoMdFootball } from "react-icons/io";
+import { ImUserPlus } from "react-icons/im";
+import { HiMiniQuestionMarkCircle } from "react-icons/hi2";
+
 const {SubMenu} = Menu;
 
 
@@ -18,22 +30,22 @@ const SideMenu = (props) => {
     }
 
     const [checkTournamentDetails,setCheckTournamentDetails] = useState(true);
-    const [checkUpcomingEventDetails,setCheckUpcomingEventDetails] = useState(false);
-    const [userType,setUserType] = useState(USERTYPE.PLAYER);
+    const [checkUpcomingEventDetails,setCheckUpcomingEventDetails] = useState(true);
+    const [userType,setUserType] = useState(USERTYPE.MANAGER);
     const [openKeys, setOpenKeys] = useState([]);
 
     const matchesMenuOption = () =>{
         let menuOption;
         menuOption = (
-            <SubMenu key='matches' title='Matches'>
-                <Menu.Item key='quarterFinal'>
+            <SubMenu key='matches' icon={<TbSoccerField />} title='Matches'>
+                <Menu.Item key='quarterFinal' icon={<BiSolidCircleQuarter />}>
                     <Link to='/quarterFinal'>Quarter Final</Link>
                 </Menu.Item>
-                <Menu.Item key='semiFinal'>
-                    <Link>Semi Final</Link>
+                <Menu.Item key='semiFinal' icon={<WiMoonFirstQuarter />}>
+                    <Link to='/semiFinal'>Semi Final</Link>
                 </Menu.Item>
-                <Menu.Item key='final'>
-                    <Link>Final</Link>
+                <Menu.Item key='final' icon={<FaCircle />}>
+                    <Link to='/final'>Final</Link>
                 </Menu.Item>
             </SubMenu>
         )
@@ -44,25 +56,25 @@ const SideMenu = (props) => {
         let menuOption;
         if(!checkTournamentDetails){
             menuOption = (
-                <Menu.Item key='tournaments'>
+                <Menu.Item key='tournaments' icon={<RiFootballLine />}>
                     <Link to='/tournamentsPage'>Tournaments</Link>
                 </Menu.Item>
             )
         }else{
             menuOption = (
-                <SubMenu key='tournaments' title='Tournament' onTitleClick={() => setOpenKeys(['tournaments'])}>
+                <SubMenu key='tournaments' icon={<RiFootballLine />} title='Tournament' onTitleClick={() => setOpenKeys(['tournaments'])}>
                     {matchesMenuOption()}
-                    <Menu.Item key='teams'>
-                        <Link>Teams</Link>
+                    <Menu.Item key='teams' icon={<RiTeamFill />}>
+                        <Link to='/teams'>Teams</Link>
                     </Menu.Item>
-                    <Menu.Item key='refress'>
-                        <Link>Refrees</Link>
+                    <Menu.Item key='refress' icon={<GiWhistle />}>
+                        <Link to='/refrees'>Refrees</Link>
                     </Menu.Item>
-                    <Menu.Item key='managers'>
-                        <Link>Managers</Link>
+                    <Menu.Item key='managers' icon={<LuGlasses />}>
+                        <Link to='/managers'>Managers</Link>
                     </Menu.Item>
-                    <Menu.Item key='leaderBoard'>
-                        <Link>Leaderboard</Link>
+                    <Menu.Item key='leaderBoard' icon={<MdLeaderboard />}>
+                        <Link to='/leaderboard'>Leaderboard</Link>
                     </Menu.Item>
                 </SubMenu>
             )
@@ -74,20 +86,20 @@ const SideMenu = (props) => {
         let menuOption;
         if(userType===USERTYPE.ADMIN){
             menuOption = (
-                <SubMenu key='pendingRequests' title='Pending Request'>
-                    <Menu.Item key="teamRequest">
-                        <Link>Team's Request</Link>
+                <SubMenu key='pendingRequests' icon={<MdPendingActions />} title='Pending Request'>
+                    <Menu.Item key="teamRequest" icon={<TbUsersPlus />}>
+                        <Link to='/teamsRequest'>Team's Request</Link>
                     </Menu.Item>
-                    <Menu.Item key='managerRequest'>
-                        <Link>Manager Request</Link>
+                    <Menu.Item key='managerRequest' icon={<ImUserPlus />}>
+                        <Link to='/managersRequest'>Manager Request</Link>
                     </Menu.Item>
                 </SubMenu>
             )
         }else if(userType===USERTYPE.MANAGER){
             menuOption = (
-                <SubMenu key='pendingRequests' title='Pending Request'>
-                    <Menu.Item key="playerRequest">
-                        <Link>Player's Request</Link>
+                <SubMenu key='pendingRequests' icon={<MdPendingActions />} title='Pending Request'>
+                    <Menu.Item key="playerRequest" icon={<LuUserPlus2 />}>
+                        <Link to='/playersRequest'>Player's Request</Link>
                     </Menu.Item>
                 </SubMenu>
             )
@@ -99,9 +111,9 @@ const SideMenu = (props) => {
         let menuOption;
         if(checkUpcomingEventDetails){
             menuOption = (
-                <SubMenu key='upcomingEvents' title='Upcoming Event' onTitleClick={() => setOpenKeys(['upcomingEvents'])}>
-                    <Menu.Item key='participatedTeams'>
-                        <Link>Participated Teams</Link>
+                <SubMenu key='upcomingEvents' icon={<IoMdFootball />} title='Upcoming Event' onTitleClick={() => setOpenKeys(['upcomingEvents'])}>
+                    <Menu.Item key='participatedTeams' icon={<RiTeamFill />}>
+                        <Link to='/teams'>Participated Teams</Link>
                     </Menu.Item>
                     {(userType===USERTYPE.ADMIN || userType===USERTYPE.MANAGER) && pendingRequestMenuOption()}
                 </SubMenu>
@@ -127,7 +139,7 @@ const SideMenu = (props) => {
             
             {upcomingEventMenuOption()}
 
-            <Menu.Item key='about'>
+            <Menu.Item key='about' icon={<HiMiniQuestionMarkCircle />}>
                 <Link to='/about'>About</Link>
             </Menu.Item>
         </Menu>

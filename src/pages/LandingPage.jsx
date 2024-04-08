@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import '../css/landingPage.css';
 
 
-const LandingPage = () => {
+const LandingPage = ({isLoggedIn,handleLogin}) => {
     const navigate = useNavigate();
     
     return (
@@ -19,6 +19,7 @@ const LandingPage = () => {
                                 <Space>
                                     <Button size='large'
                                     onClick={()=>{
+                                        handleLogin();
                                         navigate("/tournamentsPage");
                                     }}>View as a guest</Button>
                                     <Button type='primary' size='large' className='login-button' 
