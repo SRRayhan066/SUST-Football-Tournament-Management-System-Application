@@ -1,6 +1,9 @@
 import React from 'react';
 import '../css/tournament.css'
 import { Button, Table, Card } from 'antd';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import SideMenu from '../components/SideMenu';
 
 const Tournament = () => {
     const columns = [
@@ -132,37 +135,45 @@ const Tournament = () => {
     }
     return (
         <div>
-            <div className="tournament-container">
-                <div className="tournament-container-heading">
-                    <div className="tournament-container-headings">
-                        <h2>Tournaments</h2>
-                        <Card
-                            className='total-tournament-card'
-                            style={{
-                                height: 35,
-                                width: 200,
-                            }}
-                        >
-                            <p>Tournaments: 100</p>
-                        </Card>
+            <Header/>
+            <div className="content-page-container">
+                <div className="content-page-left-container">
+                    <SideMenu selectedOption='tournaments'/>
+                </div>
+                <div className="content-page-right-container">
+                    <div className="tournament-container">
+                        <div className="tournament-container-heading">
+                            <div className="tournament-container-headings">
+                                <h2>Tournaments</h2>
+                                <Card
+                                    className='total-tournament-card'
+                                    style={{
+                                        height: 35,
+                                        width: 200,
+                                    }}
+                                >
+                                    <p>Tournaments: 100</p>
+                                </Card>
+                            </div>
+                            
+                        </div>
+                        <div className="tournament-table-container">
+                            <Table className='table-class' columns={columns} dataSource={dataSource} 
+                                scroll={{
+                                    y: 430,
+                                }}
+                                pagination={{
+                                    showSizeChanger: true,
+                                    style:{
+                                        marginRight:'15px'
+                                    }
+                                }}
+                            ></Table>
+                        </div>    
                     </div>
-                    
                 </div>
-                <div className="tournament-table-container">
-                    <Table className='table-class' columns={columns} dataSource={dataSource} 
-                        scroll={{
-                            y: 430,
-                          }}
-                        pagination={{
-                            showSizeChanger: true,
-                            style:{
-                                marginRight:'15px'
-                            }
-                        }}
-                    ></Table>
-                </div>
-                
             </div>
+            <Footer/>    
         </div>
     );
 };

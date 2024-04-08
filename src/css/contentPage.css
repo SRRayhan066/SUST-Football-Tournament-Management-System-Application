@@ -65,6 +65,15 @@
     background-color: rgba(211, 206, 206, 0.918);;
 }
 
+.arrow-hidden .ant-menu-submenu-arrow {
+    display: none !important;
+}
+  
+.arrow-visible .ant-menu-submenu-arrow {
+    display: block !important;
+}
+  
+
 .log-out-class{
     font-size: 25px;
 }

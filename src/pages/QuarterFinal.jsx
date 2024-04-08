@@ -1,16 +1,15 @@
 import React from 'react';
 import Header from '../components/Header';
-import '../css/contentPage.css'
-import SideMenu from '../components/SideMenu';
 import Footer from '../components/Footer';
+import SideMenu from '../components/SideMenu';
 
-const UpcomingEvent = () => {
+const QuarterFinal = () => {
     return (
         <div>
             <Header/>
             <div className="content-page-container">
                 <div className="content-page-left-container">
-                    <SideMenu selectedOption='upcomingEvents' />
+                    <SideMenu selectedOption='quarterFinal'/>
                 </div>
                 <div className="content-page-right-container">
 
@@ -21,4 +20,4 @@ const UpcomingEvent = () => {
     );
 };
 
-export default UpcomingEvent;
+export default QuarterFinal;

@@ -8,6 +8,7 @@ import UpcomingEvent from './UpcomingEvent';
 import 'antd/dist/reset.css';
 import { Menu, Avatar } from 'antd';
 import { DribbbleOutlined, CalendarOutlined, BookOutlined, TrademarkOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import Header from '../components/Header';
 
 const ContentPage = () => {
 
@@ -60,7 +61,8 @@ const ContentPage = () => {
 
     return (  
         <div>
-            <div className="header">
+            <Header/>
+            {/* <div className="header">
                 <div className="nav-left-content">
                     <img src='../../public/Images/logo.png'></img>
                 </div>
@@ -80,7 +82,8 @@ const ContentPage = () => {
                     </Avatar>
                     <LogoutOutlined className='log-out-class'/>
                 </div>
-            </div>
+            </div> */}
+
             <div className="content-page-container">
                 <div className="content-page-left-container">
                     <Menu
@@ -93,9 +96,9 @@ const ContentPage = () => {
                     </Menu>
                 </div>
                 <div className="content-page-right-container">
-                    {selectedMenu===MENUS.TOURNAMENT && <Tournament/>}
+                    {/* {selectedMenu===MENUS.TOURNAMENT && <Tournament/>}
                     {selectedMenu===MENUS.UPCOMINGEVENT && <UpcomingEvent/>}
-                    {selectedMenu===MENUS.ABOUT && <About/>}
+                    {selectedMenu===MENUS.ABOUT && <About/>} */}
                 </div>
             </div>
             <div className="footer">
