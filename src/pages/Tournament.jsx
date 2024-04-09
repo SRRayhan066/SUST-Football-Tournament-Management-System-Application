@@ -5,6 +5,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SideMenu from '../components/SideMenu';
 
+import { IoCaretBackOutline } from "react-icons/io5";
+
 const Tournament = () => {
     const columns = [
         {
@@ -139,6 +141,7 @@ const Tournament = () => {
                 <div className="tournament-container-heading">
                     <div className="tournament-container-headings">
                         <h2>Tournaments</h2>
+                        <Button icon={<IoCaretBackOutline />} className='back-button' size='large'>Back</Button>
                         <Card
                             className='total-tournament-card'
                             style={{
