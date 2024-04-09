@@ -70,12 +70,12 @@ const SideMenu = (props) => {
                     <Menu.Item key='refress' icon={<GiWhistle />}>
                         <Link to='/refrees'>Refrees</Link>
                     </Menu.Item>
-                    <Menu.Item key='managers' icon={<LuGlasses />}>
+                    {/* <Menu.Item key='managers' icon={<LuGlasses />}>
                         <Link to='/managers'>Managers</Link>
                     </Menu.Item>
                     <Menu.Item key='leaderBoard' icon={<MdLeaderboard />}>
                         <Link to='/leaderboard'>Leaderboard</Link>
-                    </Menu.Item>
+                    </Menu.Item> */}
                 </SubMenu>
             )
         }

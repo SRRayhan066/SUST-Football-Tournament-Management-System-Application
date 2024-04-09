@@ -61,9 +61,9 @@ const App = () => {
 
                   <Route path='/refrees' element={<Refrees/>}></Route>
 
-                  <Route path='/managers' element={<Managers/>}></Route>
+                  {/* <Route path='/managers' element={<Managers/>}></Route>
 
-                  <Route path='/leaderboard' element={<Leaderboard/>}></Route>
+                  <Route path='/leaderboard' element={<Leaderboard/>}></Route> */}
 
                   <Route path='/teamsRequest' element={<TeamsPendingRequest/>}></Route>
                   <Route path='/managersRequest' element={<ManagersPendingRequest/>}></Route>
