@@ -32,6 +32,17 @@ const Teams = () => {
             dataIndex:'status',
             key:'status',
             align:'center',
+            render: (_,record)=>{
+                
+                if(record.status==='Champion'){
+                    return <Tag color='#F1C40F' style={{fontSize:'medium'}}>{record.status}</Tag>
+                }else if(record.status==='Runners-up'){
+                    return <Tag color='#5D6D7E' style={{fontSize:'medium'}}>{record.status}</Tag>
+                }else if(record.status==='2nd Runners-up'){
+                    return <Tag color='#BA4A00' style={{fontSize:'medium'}}>{record.status}</Tag>
+                }
+                return <Tag color='default' style={{fontSize:'medium'}}>{record.status}</Tag>
+            }
         },
         {
             title:'Action',
@@ -65,6 +76,13 @@ const Teams = () => {
             managerName:'Suchi',
             status:'2nd Runners-up'
         },
+        {
+            key:'4',
+            serialNo:'4',
+            teamName:'Industrial and Productional Engineering',
+            managerName:'Abul Basar',
+            status:'Loose'
+        }
     ]
 
     const handleButtonClicked = (records) =>{
