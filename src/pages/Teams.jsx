@@ -1,9 +1,107 @@
 import React from 'react';
+import '../css/tournament.css'
+import { Button, Table, Card, Tag } from 'antd';
+import { IoCaretBackOutline } from "react-icons/io5";
+import 'antd/dist/reset.css';
 
 const Teams = () => {
+
+    const columns = [
+        {
+            title:'Serial No.',
+            dataIndex:'serialNo',
+            key:'serialNo',
+            align:'center',
+            width: 100
+        },
+        {
+            title:'Team Name',
+            dataIndex:'teamName',
+            key:'teamName',
+            width: 300,
+            align: 'center'
+        },
+        {
+            title:'Manager',
+            dataIndex:'managerName',
+            key:'managerName',
+            align: 'center'
+        },
+        {
+            title:'Status',
+            dataIndex:'status',
+            key:'status',
+            align:'center',
+        },
+        {
+            title:'Action',
+            key:'action',
+            align: 'center',    
+            render: (text,record)=>{
+                return <Button className='see-details-button' onClick={()=>{handleButtonClicked(record)}} type='primary'>See Details</Button>
+            }
+        }
+    ]
+
+    const dataSource = [
+        {
+            key:'1',
+            serialNo:'1',
+            teamName:'Computer Science and Technology',
+            managerName:'Dr. Ranju',
+            status:'Champion'
+        },
+        {
+            key:'2',
+            serialNo:'2',
+            teamName:'Software Engineering',
+            managerName:'Partha Pratim Paul',
+            status:'Runners-up'
+        },
+        {
+            key:'3',
+            serialNo:'3',
+            teamName:'Electrical and Electronics Engineering',
+            managerName:'Suchi',
+            status:'2nd Runners-up'
+        },
+    ]
+
+    const handleButtonClicked = (records) =>{
+        console.log(records);
+    }
+
     return (
         <div>
-            <h1>Team Page</h1>
+            <div className="tournament-container">
+                <div className="tournament-container-heading">
+                    <div className="tournament-container-headings">
+                        <h2>Teams</h2>
+                        <Button icon={<IoCaretBackOutline />} className='back-button' size='large'>Back</Button>
+                        <Card
+                            className='total-tournament-card'
+                            style={{
+                                height: 35,
+                                width: 200,
+                            }}>
+                            <p>Teams: 100</p>
+                        </Card>
+                    </div>
+                </div>
+                <div className="tournament-table-container">
+                    <Table className='table-class' columns={columns} dataSource={dataSource}
+                        scroll={{
+                            y: 430,
+                        }}
+                        pagination={{
+                            showSizeChanger: true,
+                            style:{
+                                marginRight:'15px'
+                            }
+                        }}
+                    ></Table>
+                </div>
+            </div>
         </div>
     );
 };

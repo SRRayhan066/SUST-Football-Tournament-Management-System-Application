@@ -1,12 +1,8 @@
 import React from 'react';
 import '../css/tournament.css'
 import { Button, Table, Card, Tag } from 'antd';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import SideMenu from '../components/SideMenu';
 
 import { IoCaretBackOutline } from "react-icons/io5";
-import { render } from 'react-dom';
 
 const Tournament = () => {
     const columns = [
