@@ -4,10 +4,11 @@ import LoginForm from '../components/LoginForm';
 import RegistrationForm from '../components/RegistrationForm';
 import { Alert } from 'antd';
 
-const LoginPage = () => {
+const LoginPage = ({setIsLoggedIn}) => {
     
     const [loginStatus,setLoginStatus] = useState(true);
-    const [registrationSucces,setRegistrationSuccess] = useState(true);
+    const [registrationSucces,setRegistrationSuccess] = useState(false);
+    const [loginSucces,setLoginSuccess] = useState(false);
 
     const onCheckLogin = () =>{
         switch(loginStatus){
@@ -34,16 +35,18 @@ const LoginPage = () => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             setRegistrationSuccess(false);
+            setLoginSuccess(false);
         }, 1000);
 
         return () => clearTimeout(timeout);
-    }, [registrationSucces]);
+    }, [registrationSucces,loginSucces]);
 
     return (
         <div className='login-page-main-container'>
             
             <div className="login-page-container">
                 {registrationSucces && <Alert className='alert-class' message='Registration Successfull' type='success' showIcon closable/>}
+                {loginSucces && <Alert className='alert-class' message='Login Successfull' type='success' showIcon closable/>}
                 <div className="login-page-left-container">
                     <img src='../../public/Images/footballMatchImage.jpg'></img>
                 </div>
@@ -56,7 +59,7 @@ const LoginPage = () => {
 
                         <div className="login-page-right-container2">
                             {loginStatus && (
-                                <LoginForm/>
+                                <LoginForm setLoginSuccess={setLoginSuccess} setIsLoggedIn={setIsLoggedIn}/>
                             )}
                             {!loginStatus && (
                                 <RegistrationForm setLoginStatus={setLoginStatus} setRegistrationSuccess={setRegistrationSuccess}/>

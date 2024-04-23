@@ -1,12 +1,32 @@
 import React from 'react';
 import { Form, Button, Input } from 'antd';
-import '../css/loginForm.css'
+import '../css/loginForm.css';
 
-const LoginForm = () => {
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+const LoginForm = ({setLoginSuccess,setIsLoggedIn}) => {
+
+    const navigate = useNavigate();
+
+    const handleSubmit = (event) =>{
+        console.log(event);
+        // event.preventDefault();
+        axios.post("http://localhost:8081/user/login",event)
+        .then(res=>{
+            console.log(res);
+            //setLoginStatus(true);
+            setIsLoggedIn(true);
+            setLoginSuccess(true);
+            navigate("/tournamentsPage")
+        })
+        .catch(err=>console.log(err))
+    }
+
     return (
         <div>
             <div className="login-form-container">
-                <Form autoComplete='off' labelCol={{span:5}} wrapperCol={{span:16}}>
+                <Form onFinish={handleSubmit} autoComplete='off' labelCol={{span:5}} wrapperCol={{span:16}}>
                     <Form.Item label='E-mail' name='email' rules={[
                         {required:true,message:'Enter your e-mail'},
                         {type:'email',message:'Please enter a valid e-mail'}]} hasFeedback>

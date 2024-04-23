@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const db = mysql.createConnection({
     host:"localhost",
@@ -31,6 +32,40 @@ router.post('/signup',async(req,res)=>{
         return res.status(500).json({error : 'Error in hashing password'});
     }
     
+})
+
+
+router.post('/login',async(req,res)=>{
+    try{
+        const sql = "SELECT * FROM user_tbl WHERE email = ?" ;
+        const values = [
+            req.body.email
+        ]
+        db.query(sql,[values],async(err,result)=>{
+            if(err) return res.json("Error occurerd");
+            if(result.length>0){
+                const isValid = await bcrypt.compare(req.body.password,result[0].password);
+                if(isValid){
+                    const token = jwt.sign({
+                        email:result[0].email,
+                        name:result[0].name
+                    },process.env.JWT_SECRET,{
+                        expiresIn:'1h'
+                    });
+
+                    return res.status(200).json({
+                        authentication_token: token,
+                        message : 'Successfully Login'
+                    });
+                }else{
+                    return res.json("Login Failed");
+                }
+            }else return res.json("Login Failed");
+        })
+    }catch(error){
+        console.log(error);
+        res.status(500).json({error : 'Login Failed'});
+    }
 })
 
 module.exports = router;

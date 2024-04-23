@@ -40,7 +40,7 @@ const App = () => {
         {!isLoggedIn ? (
           <Routes>
             <Route path="/" element={<LandingPage isLoggedIn={isLoggedIn} handleLogin={handleLogin} />} />
-            <Route path="/loginPage" element={<LoginPage />} />
+            <Route path="/loginPage" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
           </Routes>
         ) : (
           <div>
