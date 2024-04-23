@@ -1,8 +1,10 @@
-import { Form, Input, Radio, Select, Button } from 'antd';
+import { Form, Input, Radio, Select, Button, Alert } from 'antd';
 import React, { useState } from 'react';
 import '../css/registrationForm.css';
 
-const RegistrationForm = () => {
+import axios from 'axios';
+
+const RegistrationForm = ({setLoginStatus,setRegistrationSuccess}) => {
 
     const departments = ['CSE','EEE','SWE','IPE','CEP'];
 
@@ -24,10 +26,24 @@ const RegistrationForm = () => {
         }
     }
 
+    const handleSubmit = (event) =>{
+        console.log(event);
+        // event.preventDefault();
+        axios.post("http://localhost:8081/user/signup",event)
+        .then(res=>{
+            console.log(res);
+            setLoginStatus(true);
+            setRegistrationSuccess(true);
+        })
+        .catch(err=>console.log(err))
+    }
+
     return (
         <div>
+            
             <div className="registration-form-container">
-                <Form autoComplete='off' labelCol={{span:7}} wrapperCol={{span:14}}>
+                
+                <Form onFinish={handleSubmit} autoComplete='off' labelCol={{span:7}} wrapperCol={{span:14}}>
                     <Form.Item label='Name' name='name' rules={[
                         {required:true,message:'Enter your username'},
                         {whitespace: true},

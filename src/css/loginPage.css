@@ -12,6 +12,14 @@
     background-color: rgb(255, 238, 238);
 }
 
+.alert-class{
+    position: absolute;
+    top: 25px; /* Adjust this value to place the alert vertically */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; 
+}
+
 .login-page-container{
     display: flex;
     justify-content: center;

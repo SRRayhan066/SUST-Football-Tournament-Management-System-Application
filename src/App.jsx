@@ -26,7 +26,7 @@ import PlayersPendingRequest from './pages/PlayersPendingRequest';
 
 const App = () => {
 
-  const [isLoggedIn,setIsLoggedIn] = useState(true);
+  const [isLoggedIn,setIsLoggedIn] = useState(false);
 
   const handleLogin = () =>{
     setIsLoggedIn(true);

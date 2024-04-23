@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/loginPage.css'
 import LoginForm from '../components/LoginForm';
 import RegistrationForm from '../components/RegistrationForm';
+import { Alert } from 'antd';
 
 const LoginPage = () => {
     
     const [loginStatus,setLoginStatus] = useState(true);
+    const [registrationSucces,setRegistrationSuccess] = useState(true);
 
     const onCheckLogin = () =>{
         switch(loginStatus){
@@ -29,9 +31,19 @@ const LoginPage = () => {
         setLoginStatus(prev => !prev);
     }
 
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setRegistrationSuccess(false);
+        }, 1000);
+
+        return () => clearTimeout(timeout);
+    }, [registrationSucces]);
+
     return (
         <div className='login-page-main-container'>
+            
             <div className="login-page-container">
+                {registrationSucces && <Alert className='alert-class' message='Registration Successfull' type='success' showIcon closable/>}
                 <div className="login-page-left-container">
                     <img src='../../public/Images/footballMatchImage.jpg'></img>
                 </div>
@@ -47,7 +59,7 @@ const LoginPage = () => {
                                 <LoginForm/>
                             )}
                             {!loginStatus && (
-                                <RegistrationForm/>
+                                <RegistrationForm setLoginStatus={setLoginStatus} setRegistrationSuccess={setRegistrationSuccess}/>
                             )}
                             <div className="login-page-state-change-class">
                                 <p>{selectPState()}<a onClick={onSetLoginStatus}><b>Click here</b></a></p>
