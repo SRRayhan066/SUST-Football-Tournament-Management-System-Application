@@ -6,3 +6,10 @@ CREATE TABLE user_tbl(
     dept VARCHAR(100),
     id VARCHAR(10) 
 )
+
+CREATE TABLE tournament_tbl(
+   tournamentId VARCHAR(255) PRIMARY KEY,
+   tournamentName VARCHAR(255),
+   startDate DATE,
+   endDate DATE
+)

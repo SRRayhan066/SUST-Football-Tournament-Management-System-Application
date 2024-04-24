@@ -8,7 +8,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
-const Header = ({tokenValue,setIsLoggedIn}) => {
+const Header = ({setIsLoggedIn}) => {
 
     const navigate = useNavigate();
 
@@ -17,9 +17,9 @@ const Header = ({tokenValue,setIsLoggedIn}) => {
     const [role, setRole] = useState(localStorage.getItem('userRole') || "");
 
     useEffect(()=>{
-        const token = tokenValue;
+        const token = localStorage.getItem('token');
         const expiresIn = 3600;
-        Cookies.set('accessToken',token,{expires:expiresIn});
+        //Cookies.set('accessToken',token,{expires:expiresIn});
 
         console.log("Here "+token);
         axios.get("http://localhost:8081/user/info",{

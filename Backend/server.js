@@ -4,6 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 const authorizationHandler = require('./routerHandler/authorizationHandler');
+const tournamentHandler = require('./routerHandler/tournamentsHandler');
 
 const app = express();
 dotenv.config();
@@ -24,6 +25,7 @@ db.connect((err)=>{
 })
 
 app.use('/user',authorizationHandler);
+app.use('/tournament',tournamentHandler);
 
 // default error handler
 const errorHandler = (err, req, res, next) =>{

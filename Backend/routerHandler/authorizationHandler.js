@@ -55,6 +55,8 @@ router.post('/login',async(req,res)=>{
                         expiresIn:'1h'
                     });
 
+                    
+
                     return res.status(200).json({
                         authentication_token: token,
                         message : 'Successfully Login'

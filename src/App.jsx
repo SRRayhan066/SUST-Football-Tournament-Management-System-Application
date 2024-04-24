@@ -27,7 +27,7 @@ import PlayersPendingRequest from './pages/PlayersPendingRequest';
 const App = () => {
 
   const [isLoggedIn,setIsLoggedIn] = useState(false);
-  const [tokenValue,setTokenValue] = useState('');
+  //const [tokenValue,setTokenValue] = useState('');
 
   const handleLogin = () =>{
     setIsLoggedIn(true);
@@ -36,8 +36,9 @@ const App = () => {
 
   useEffect(()=>{
     const token = getToken();
-    setTokenValue(token);
-    if(token!='') setIsLoggedIn(true);
+    //setTokenValue(token);
+    
+    if(token!=='') setIsLoggedIn(true);
     else setIsLoggedIn(false);
   },[]);
 
@@ -68,7 +69,7 @@ const App = () => {
           </Routes>
         ) : (
           <div>
-            <Header tokenValue={tokenValue} setIsLoggedIn={setIsLoggedIn}/>
+            <Header setIsLoggedIn={setIsLoggedIn}/>
             <div className="content-page-container">
               <div className="content-page-left-container">
                 <SideMenu />

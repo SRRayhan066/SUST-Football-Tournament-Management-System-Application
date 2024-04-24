@@ -5,6 +5,8 @@ import '../css/loginForm.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import Cookies from 'js-cookie';
+
 const LoginForm = ({setLoginSuccess,isLoggedIn,handleLogin}) => {
 
     const navigate = useNavigate();
@@ -16,7 +18,9 @@ const LoginForm = ({setLoginSuccess,isLoggedIn,handleLogin}) => {
         .then(res=>{
             console.log(res.data.authentication_token);
             //setLoginStatus(true);
+            const accessToken = res.data.authentication_token;
             localStorage.setItem('token',res.data.authentication_token);
+            Cookies.set('accessToken', accessToken, { expires: 3600 });
             // setIsLoggedIn(true);
             handleLogin();
             setLoginSuccess(true);
