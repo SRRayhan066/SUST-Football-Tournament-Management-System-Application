@@ -68,7 +68,7 @@ const App = () => {
           </Routes>
         ) : (
           <div>
-            <Header tokenValue={tokenValue}/>
+            <Header tokenValue={tokenValue} setIsLoggedIn={setIsLoggedIn}/>
             <div className="content-page-container">
               <div className="content-page-left-container">
                 <SideMenu />

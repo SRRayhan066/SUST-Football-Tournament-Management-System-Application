@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import 'antd/dist/reset.css';
 import '../css/contentPage.css';
-import { Avatar } from 'antd';
+import { Avatar, Button } from 'antd';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
-const Header = ({tokenValue}) => {
+const Header = ({tokenValue,setIsLoggedIn}) => {
+
+    const navigate = useNavigate();
 
     const colorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae'];
     const [color, setColor] = useState(localStorage.getItem('headerColor') || colorList[0]);
@@ -48,6 +51,12 @@ const Header = ({tokenValue}) => {
         .catch(error=>console.log(error));
     },[]);
 
+    const logOut = () =>{
+        Cookies.remove('accessToken');
+        setIsLoggedIn(false);
+        navigate('/');
+    }
+
     return (
             <div className="header">
                 {/* <h1>Hello</h1> */}
@@ -67,7 +76,7 @@ const Header = ({tokenValue}) => {
                         icon={<UserOutlined/>}
                     >
                     </Avatar>
-                    <LogoutOutlined className='log-out-class'/>
+                    <Button type='primary' danger onClick={logOut}>Log Out</Button>
                 </div>
             </div>
     );
