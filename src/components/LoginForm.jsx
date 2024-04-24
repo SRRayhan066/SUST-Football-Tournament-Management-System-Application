@@ -5,7 +5,7 @@ import '../css/loginForm.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const LoginForm = ({setLoginSuccess,setIsLoggedIn}) => {
+const LoginForm = ({setLoginSuccess,isLoggedIn,handleLogin}) => {
 
     const navigate = useNavigate();
 
@@ -14,9 +14,11 @@ const LoginForm = ({setLoginSuccess,setIsLoggedIn}) => {
         // event.preventDefault();
         axios.post("http://localhost:8081/user/login",event)
         .then(res=>{
-            console.log(res);
+            console.log(res.data.authentication_token);
             //setLoginStatus(true);
-            setIsLoggedIn(true);
+            localStorage.setItem('token',res.data.authentication_token);
+            // setIsLoggedIn(true);
+            handleLogin();
             setLoginSuccess(true);
             navigate("/tournamentsPage")
         })

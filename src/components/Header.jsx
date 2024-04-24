@@ -1,14 +1,52 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'antd/dist/reset.css';
 import '../css/contentPage.css';
 import { Avatar } from 'antd';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
-const Header = () => {
+const Header = ({tokenValue}) => {
 
     const colorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae'];
-    const [color,setColor] = useState(colorList[0]);
+    const [color, setColor] = useState(localStorage.getItem('headerColor') || colorList[0]);
+    const [role, setRole] = useState(localStorage.getItem('userRole') || "");
+
+    useEffect(()=>{
+        const token = tokenValue;
+        const expiresIn = 3600;
+        Cookies.set('accessToken',token,{expires:expiresIn});
+
+        console.log("Here "+token);
+        axios.get("http://localhost:8081/user/info",{
+            headers : {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(res=>{
+            console.log(res.data);
+            const val = res.data.role;
+            switch(val){
+                case 'admin' :
+                    setColor(colorList[0]);
+                    break;
+                case 'player' :
+                    setColor(colorList[1]);
+                    break;
+                case 'manager' :
+                    setColor(colorList[2]);
+                    break;
+                default :
+                    setColor(colorList[3]);
+                    break;
+            }
+            setRole(val.toUpperCase());
+            localStorage.setItem('headerColor', color);
+            localStorage.setItem('userRole', val);
+        })
+        .catch(error=>console.log(error));
+    },[]);
 
     return (
             <div className="header">
@@ -17,7 +55,7 @@ const Header = () => {
                     <img src='../../public/Images/logo.png'></img>
                 </div>
                 <div className="nav-right-content">
-                    <h2>SUST FOOTBALL TOURNAMENT MANAGEMENT SYSTEM</h2>
+                    <h2>{role}</h2>
                     <Avatar
                         className='avatar-class'
                         style={{

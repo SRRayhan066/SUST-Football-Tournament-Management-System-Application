@@ -4,7 +4,7 @@ import LoginForm from '../components/LoginForm';
 import RegistrationForm from '../components/RegistrationForm';
 import { Alert } from 'antd';
 
-const LoginPage = ({setIsLoggedIn}) => {
+const LoginPage = ({isLoggedIn,handleLogin}) => {
     
     const [loginStatus,setLoginStatus] = useState(true);
     const [registrationSucces,setRegistrationSuccess] = useState(false);
@@ -59,7 +59,7 @@ const LoginPage = ({setIsLoggedIn}) => {
 
                         <div className="login-page-right-container2">
                             {loginStatus && (
-                                <LoginForm setLoginSuccess={setLoginSuccess} setIsLoggedIn={setIsLoggedIn}/>
+                                <LoginForm setLoginSuccess={setLoginSuccess} isLoggedIn={isLoggedIn} handleLogin={handleLogin}/>
                             )}
                             {!loginStatus && (
                                 <RegistrationForm setLoginStatus={setLoginStatus} setRegistrationSuccess={setRegistrationSuccess}/>

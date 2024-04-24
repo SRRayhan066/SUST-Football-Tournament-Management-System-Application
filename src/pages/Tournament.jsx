@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../css/tournament.css'
 import { Button, Table, Card, Tag } from 'antd';
 
 import { IoCaretBackOutline } from "react-icons/io5";
 
-const Tournament = () => {
+const Tournament = ({setIsLoggedIn}) => {
     const columns = [
         {
             title:'Serial No.',
@@ -93,6 +93,11 @@ const Tournament = () => {
     const handleButtonClicked = (records) =>{
         console.log(records);
     }
+
+    useEffect(()=>{
+        setIsLoggedIn(true);
+    },[]);
+    
     return (
         <div>
             <div className="tournament-container">

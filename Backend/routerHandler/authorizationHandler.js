@@ -4,6 +4,8 @@ const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const checkLogin = require('../middlewares/checkLogin');
+
 const db = mysql.createConnection({
     host:"localhost",
     user:"root",
@@ -65,6 +67,26 @@ router.post('/login',async(req,res)=>{
     }catch(error){
         console.log(error);
         res.status(500).json({error : 'Login Failed'});
+    }
+})
+
+
+router.get('/info',checkLogin,async(req,res)=>{
+    try{
+        const sql = "SELECT * FROM user_tbl WHERE email = ?";
+        const values = [req.email];
+        db.query(sql,[values],async(err,result)=>{
+            if(err) return res.json("Error occured");
+            if(result.length>0){
+                return res.json({
+                    email : result[0].email,
+                    role : result[0].role
+                })
+            }else return res.json("Failed");
+        })
+    }catch(error){
+        console.log(error);
+        return res.status(500).json({error: 'Error for getting user information'});
     }
 })
 

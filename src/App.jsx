@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
@@ -27,11 +27,35 @@ import PlayersPendingRequest from './pages/PlayersPendingRequest';
 const App = () => {
 
   const [isLoggedIn,setIsLoggedIn] = useState(false);
+  const [tokenValue,setTokenValue] = useState('');
 
   const handleLogin = () =>{
     setIsLoggedIn(true);
-    console.log(isLoggedIn);
+    console.log("Check login "+isLoggedIn);
   }
+
+  useEffect(()=>{
+    const token = getToken();
+    setTokenValue(token);
+    if(token!='') setIsLoggedIn(true);
+    else setIsLoggedIn(false);
+  },[]);
+
+  const getToken = () => {
+    // Check cookies first
+    const cookieToken = getCookie('accessToken');
+    if (cookieToken) {
+      return cookieToken;
+    }else return '';
+  };
+
+  const getCookie = (name) => {
+    const cookieValue = document.cookie
+      .split('; ')
+      .find(row => row.startsWith(name))
+      ?.split('=')[1];
+    return cookieValue || '';
+  };
 
   return (
 
@@ -40,18 +64,18 @@ const App = () => {
         {!isLoggedIn ? (
           <Routes>
             <Route path="/" element={<LandingPage isLoggedIn={isLoggedIn} handleLogin={handleLogin} />} />
-            <Route path="/loginPage" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/loginPage" element={<LoginPage isLoggedIn={isLoggedIn} handleLogin={handleLogin} />} />
           </Routes>
         ) : (
           <div>
-            <Header />
+            <Header tokenValue={tokenValue}/>
             <div className="content-page-container">
               <div className="content-page-left-container">
                 <SideMenu />
               </div>
               <div className="content-page-right-container">
                 <Routes>
-                  <Route path='/tournamentsPage' element={<Tournament/>}></Route>
+                  <Route path='/tournamentsPage' element={<Tournament setIsLoggedIn={setIsLoggedIn} />}></Route>
 
                   <Route path='/quarterFinal' element={<QuarterFinal/>}></Route>
                   <Route path='/semiFinal' element={<SemiFinal/>}></Route>
