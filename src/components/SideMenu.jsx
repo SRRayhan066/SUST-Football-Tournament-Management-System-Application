@@ -15,6 +15,7 @@ import { FaCircle, FaUserPlus } from "react-icons/fa";
 import { IoMdFootball } from "react-icons/io";
 import { ImUserPlus } from "react-icons/im";
 import { HiMiniQuestionMarkCircle } from "react-icons/hi2";
+import { MdOutlineUpcoming } from "react-icons/md";
 
 const {SubMenu} = Menu;
 
@@ -30,8 +31,8 @@ const SideMenu = (props) => {
     }
 
     const [checkTournamentDetails,setCheckTournamentDetails] = useState(true);
-    const [checkUpcomingEventDetails,setCheckUpcomingEventDetails] = useState(true);
-    const [userType,setUserType] = useState(USERTYPE.MANAGER);
+    const [checkUpcomingEventDetails,setCheckUpcomingEventDetails] = useState(false);
+    const [userType,setUserType] = useState(USERTYPE.ADMIN);
     const [openKeys, setOpenKeys] = useState([]);
 
     const matchesMenuOption = () =>{
@@ -120,7 +121,7 @@ const SideMenu = (props) => {
             )
         }else{
             menuOption = (
-                <Menu.Item key='upcomingEvents' title='Upcoming Events'>
+                <Menu.Item icon={<IoMdFootball />} key='upcomingEvents' title='Upcoming Events'>
                     <Link to='/upcomingEvents'>Upcoming Events</Link>
                 </Menu.Item>
             )

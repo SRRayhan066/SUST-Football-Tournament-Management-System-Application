@@ -3,6 +3,8 @@ import '../css/tournament.css'
 import { Button, Table, Card, Tag } from 'antd';
 
 import { IoCaretBackOutline } from "react-icons/io5";
+import { FaPlusCircle } from "react-icons/fa";
+
 
 const Tournament = ({setIsLoggedIn}) => {
     const columns = [
@@ -105,15 +107,7 @@ const Tournament = ({setIsLoggedIn}) => {
                     <div className="tournament-container-headings">
                         <h2>Tournaments</h2>
                         <Button icon={<IoCaretBackOutline />} className='back-button' size='large'>Back</Button>
-                        <Card
-                            className='total-tournament-card'
-                            style={{
-                                height: 35,
-                                width: 200,
-                            }}
-                        >
-                            <p>Tournaments: 100</p>
-                        </Card>
+                        <Button icon={<FaPlusCircle />} className='add-tournament-button' size='large'>Add Tournament</Button>
                     </div>
                 </div>
                 <div className="tournament-table-container">

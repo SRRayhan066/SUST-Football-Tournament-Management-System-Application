@@ -44,6 +44,19 @@
     align-items: center;
 }
 
+.add-tournament-button{
+    float: right;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+}
+
+.edit-button{
+    margin-right: 5px;
+}
+
 .total-tournament-card p{
     margin: 0;
     

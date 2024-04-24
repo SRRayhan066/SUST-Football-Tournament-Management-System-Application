@@ -89,6 +89,8 @@ const App = () => {
 
                   <Route path='/leaderboard' element={<Leaderboard/>}></Route> */}
 
+                  <Route path='/upcomingEvents' element={<UpcomingEvent/>}></Route>
+
                   <Route path='/teamsRequest' element={<TeamsPendingRequest/>}></Route>
                   <Route path='/managersRequest' element={<ManagersPendingRequest/>}></Route>
                   <Route path='/playersRequest' element={<PlayersPendingRequest/>}></Route>
