@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../css/tournament.css'
-import { Button, Table, Card, Tag } from 'antd';
+import { Button, Table, Card, Tag, Modal } from 'antd';
 
 import { IoCaretBackOutline } from "react-icons/io5";
 import { FaPlusCircle } from "react-icons/fa";
 
+import AddTournament from '../components/AddTournament';
+
 
 const UpcomingEvent = () => {
+
+    const [showForm,setShowForm] = useState(false);
+
+    const showIt = () =>{
+        setShowForm(true);
+    }
+
+    const hideIt = () =>{
+        setShowForm(false);
+    }
+
     const columns = [
         {
             title:'Serial No.',
@@ -107,7 +120,7 @@ const UpcomingEvent = () => {
                     <div className="tournament-container-headings">
                         <h2>Upcoming Events</h2>
                         <Button icon={<IoCaretBackOutline />} className='back-button' size='large'>Back</Button>
-                        <Button icon={<FaPlusCircle />} className='add-tournament-button' size='large'>Add Tournament</Button>
+                        <Button icon={<FaPlusCircle />} className='add-tournament-button' size='large' onClick={showIt}>Add Tournament</Button>
                     </div>
                 </div>
                 <div className="tournament-table-container">
@@ -124,6 +137,23 @@ const UpcomingEvent = () => {
                     ></Table>
                 </div>    
             </div>  
+
+            <Modal
+             title='Add Tournament'
+             visible={showForm}
+             onCancel={hideIt}
+            //  footer={null}
+            footer={[
+                <Button key="cancel" onClick={hideIt}>
+                    Cancel
+                </Button>,
+                <Button key="submit" type="primary">
+                    Submit
+                </Button>,
+            ]}
+            >
+                <AddTournament/>
+            </Modal>
         </div>
     );
 };
