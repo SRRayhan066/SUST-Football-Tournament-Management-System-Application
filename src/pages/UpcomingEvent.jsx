@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../css/tournament.css'
-import { Button, Table, Card, Tag, Modal } from 'antd';
+import { Button, Table, Card, Tag, Modal, Alert } from 'antd';
 
 import { IoCaretBackOutline } from "react-icons/io5";
 import { FaPlusCircle } from "react-icons/fa";
@@ -11,6 +11,7 @@ import AddTournament from '../components/AddTournament';
 const UpcomingEvent = () => {
 
     const [showForm,setShowForm] = useState(false);
+    const [success,setSuccess] = useState(false);
 
     const showIt = () =>{
         setShowForm(true);
@@ -18,6 +19,10 @@ const UpcomingEvent = () => {
 
     const hideIt = () =>{
         setShowForm(false);
+    }
+
+    const closeIt = () =>{
+        setSuccess(false);
     }
 
     const columns = [
@@ -115,6 +120,7 @@ const UpcomingEvent = () => {
     ]
     return (
         <div>
+
             <div className="tournament-container">
                 <div className="tournament-container-heading">
                     <div className="tournament-container-headings">
@@ -124,6 +130,7 @@ const UpcomingEvent = () => {
                     </div>
                 </div>
                 <div className="tournament-table-container">
+                    
                     <Table className='table-class' columns={columns} dataSource={dataSource} 
                         scroll={{
                             y: 430,
@@ -139,6 +146,14 @@ const UpcomingEvent = () => {
             </div>  
 
             <Modal
+                title='Successfully added'
+                visible={success}
+                footer={[
+                    <Button key="close" onClick={closeIt}>Close</Button>
+                ]}
+            ></Modal>
+            
+            <Modal
              title='Add Tournament'
              visible={showForm}
              onCancel={hideIt}
@@ -147,12 +162,12 @@ const UpcomingEvent = () => {
                 <Button key="cancel" onClick={hideIt}>
                     Cancel
                 </Button>,
-                <Button key="submit" type="primary">
-                    Submit
-                </Button>,
+                // <Button key="submit" type="primary">
+                //     Submit
+                // </Button>,
             ]}
             >
-                <AddTournament/>
+                <AddTournament hideIt={hideIt} setSuccess={setSuccess}/>
             </Modal>
         </div>
     );

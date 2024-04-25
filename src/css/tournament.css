@@ -53,6 +53,14 @@
     align-items: center;
 }
 
+.add-tournament{
+    float: right;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    /* margin-left: 50px; */
+}
+
 .edit-button{
     margin-right: 5px;
 }
