@@ -58,15 +58,16 @@ const Teams = () => {
         {
             key:'1',
             serialNo:'1',
-            teamName:'Computer Science and Technology',
-            managerName:'Dr. Ranju',
+            teamName:'Software Engineering',
+            managerName:'Partha Pratim Paul',
+            
             status:'Champion'
         },
         {
             key:'2',
             serialNo:'2',
-            teamName:'Software Engineering',
-            managerName:'Partha Pratim Paul',
+            teamName:'Civil Engineering and Environmental Science',
+            managerName:'Dr. Basar',
             status:'Runners-up'
         },
         {
@@ -74,13 +75,34 @@ const Teams = () => {
             serialNo:'3',
             teamName:'Electrical and Electronics Engineering',
             managerName:'Suchi',
-            status:'2nd Runners-up'
+            status:'Loose'
         },
         {
             key:'4',
             serialNo:'4',
             teamName:'Industrial and Productional Engineering',
             managerName:'Abul Basar',
+            status:'Loose'
+        },
+        {
+            key:'5',
+            serialNo:'5',
+            teamName:'Architecture',
+            managerName:'Abul Khayer',
+            status:'Loose'
+        },
+        {
+            key:'6',
+            serialNo:'6',
+            teamName:'Computer Science and Engineering',
+            managerName:'Dr. Ranju',
+            status:'Loose'
+        },
+        {
+            key:'7',
+            serialNo:'7',
+            teamName:'Food Engineering and Tea Technology',
+            managerName:'Zahidul Islam Utpal',
             status:'Loose'
         }
     ]

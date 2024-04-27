@@ -55,16 +55,14 @@ router.post('/login',async(req,res)=>{
                         expiresIn:'1h'
                     });
 
-                    
-
                     return res.status(200).json({
                         authentication_token: token,
                         message : 'Successfully Login'
                     });
                 }else{
-                    return res.json("Login Failed");
+                    return res.status(400).json("Login Failed");
                 }
-            }else return res.json("Login Failed");
+            }else return res.status(500).json("Login Failed");
         })
     }catch(error){
         console.log(error);

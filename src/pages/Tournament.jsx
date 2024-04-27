@@ -6,6 +6,7 @@ import { IoCaretBackOutline } from "react-icons/io5";
 import { FaPlusCircle } from "react-icons/fa";
 
 
+
 const Tournament = ({setIsLoggedIn}) => {
     const columns = [
         {

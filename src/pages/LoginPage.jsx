@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import '../css/loginPage.css'
 import LoginForm from '../components/LoginForm';
 import RegistrationForm from '../components/RegistrationForm';
-import { Alert } from 'antd';
+import { Alert, Modal, Button } from 'antd';
 
 const LoginPage = ({isLoggedIn,handleLogin}) => {
     
     const [loginStatus,setLoginStatus] = useState(true);
     const [registrationSucces,setRegistrationSuccess] = useState(false);
-    const [loginSucces,setLoginSuccess] = useState(false);
+    const [loginSucces,setLoginSuccess] = useState(true);
+    const [loginFailed,setLoginFailed] = useState(false);
+
 
     const onCheckLogin = () =>{
         switch(loginStatus){
@@ -36,17 +38,25 @@ const LoginPage = ({isLoggedIn,handleLogin}) => {
         const timeout = setTimeout(() => {
             setRegistrationSuccess(false);
             setLoginSuccess(false);
-        }, 1000);
+        }, 10000);
 
         return () => clearTimeout(timeout);
     }, [registrationSucces,loginSucces]);
 
     return (
         <div className='login-page-main-container'>
-            
+            <Modal
+                title="Login Failed"
+                visible={loginFailed}
+                onCancel={()=>setLoginFailed(false)}
+                footer = {
+                    [
+                        <Button onClick={()=>setLoginFailed(false)} type='primary' danger>OK</Button>
+                    ]
+                }
+            ></Modal>
             <div className="login-page-container">
-                {registrationSucces && <Alert className='alert-class' message='Registration Successfull' type='success' showIcon closable/>}
-                {loginSucces && <Alert className='alert-class' message='Login Successfull' type='success' showIcon closable/>}
+                
                 <div className="login-page-left-container">
                     <img src='../../public/Images/footballMatchImage.jpg'></img>
                 </div>
@@ -59,7 +69,7 @@ const LoginPage = ({isLoggedIn,handleLogin}) => {
 
                         <div className="login-page-right-container2">
                             {loginStatus && (
-                                <LoginForm setLoginSuccess={setLoginSuccess} isLoggedIn={isLoggedIn} handleLogin={handleLogin}/>
+                                <LoginForm setLoginFailed={setLoginFailed} isLoggedIn={isLoggedIn} handleLogin={handleLogin}/>
                             )}
                             {!loginStatus && (
                                 <RegistrationForm setLoginStatus={setLoginStatus} setRegistrationSuccess={setRegistrationSuccess}/>

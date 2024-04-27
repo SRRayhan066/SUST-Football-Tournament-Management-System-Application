@@ -100,22 +100,8 @@ const UpcomingEvent = () => {
             key:'1',
             serialNo:'1',
             tournamentName:'Intra SUST Football Tournament-2022',
-            startDate:'2022-01-12',
-            endDate:'2022-02-12'
-        },
-        {
-            key:'2',
-            serialNo:'2',
-            tournamentName:'Intra SUST Football Tournament-2023',
-            startDate:'2025-01-12',
-            endDate:'2025-06-12'
-        },
-        {
-            key:'3',
-            serialNo:'3',
-            tournamentName:'Intra SUST Football Tournament-2024',
-            startDate:'2024-01-12',
-            endDate:'2024-06-12'
+            startDate:'2024-06-06',
+            endDate:'2022-07-12'
         }
     ]
     return (

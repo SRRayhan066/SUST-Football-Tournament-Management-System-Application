@@ -53,6 +53,10 @@
     align-items: center;
 }
 
+.reject-button{
+    margin-left: 5px;
+}
+
 .add-tournament{
     float: right;
     display: flex;

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Cookies from 'js-cookie';
 
-const LoginForm = ({setLoginSuccess,isLoggedIn,handleLogin}) => {
+const LoginForm = ({setLoginFailed,isLoggedIn,handleLogin}) => {
 
     const navigate = useNavigate();
 
@@ -16,17 +16,22 @@ const LoginForm = ({setLoginSuccess,isLoggedIn,handleLogin}) => {
         // event.preventDefault();
         axios.post("http://localhost:8081/user/login",event)
         .then(res=>{
-            console.log(res.data.authentication_token);
+            if(res.status===200){
+                console.log(res.data.authentication_token);
             //setLoginStatus(true);
-            const accessToken = res.data.authentication_token;
-            localStorage.setItem('token',res.data.authentication_token);
-            Cookies.set('accessToken', accessToken, { expires: 3600 });
-            // setIsLoggedIn(true);
-            handleLogin();
-            setLoginSuccess(true);
-            navigate("/tournamentsPage")
+                const accessToken = res.data.authentication_token;
+                localStorage.setItem('token',res.data.authentication_token);
+                //Cookies.set('accessToken', accessToken, { expires: new Date(new Date().getTime() + 24*60*60*1000) });
+                // setIsLoggedIn(true);
+                handleLogin();
+                
+                navigate("/tournamentsPage")
+            }
+            
         })
-        .catch(err=>console.log(err))
+        .catch(err=>{
+            setLoginFailed(true);
+        })
     }
 
     return (

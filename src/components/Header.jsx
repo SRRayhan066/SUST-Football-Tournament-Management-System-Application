@@ -14,7 +14,7 @@ const Header = ({setIsLoggedIn}) => {
 
     const colorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae'];
     const [color, setColor] = useState(localStorage.getItem('headerColor') || colorList[0]);
-    const [role, setRole] = useState(localStorage.getItem('userRole') || "");
+    const [role, setRole] = useState(localStorage.getItem('userRole').toUpperCase() || "");
 
     useEffect(()=>{
         const token = localStorage.getItem('token');

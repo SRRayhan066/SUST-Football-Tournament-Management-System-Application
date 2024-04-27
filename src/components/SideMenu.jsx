@@ -31,7 +31,7 @@ const SideMenu = (props) => {
     }
 
     const [checkTournamentDetails,setCheckTournamentDetails] = useState(true);
-    const [checkUpcomingEventDetails,setCheckUpcomingEventDetails] = useState(false);
+    const [checkUpcomingEventDetails,setCheckUpcomingEventDetails] = useState(true);
     const [userType,setUserType] = useState(USERTYPE.ADMIN);
     const [openKeys, setOpenKeys] = useState([]);
 
@@ -91,9 +91,7 @@ const SideMenu = (props) => {
                     <Menu.Item key="teamRequest" icon={<TbUsersPlus />}>
                         <Link to='/teamsRequest'>Team's Request</Link>
                     </Menu.Item>
-                    <Menu.Item key='managerRequest' icon={<ImUserPlus />}>
-                        <Link to='/managersRequest'>Manager Request</Link>
-                    </Menu.Item>
+                    
                 </SubMenu>
             )
         }else if(userType===USERTYPE.MANAGER){
